@@ -50,16 +50,16 @@ class Minimos:
         
         
         
-    def seleccion_archivos(self):
+    def seleccion_archivos(self): #Método para almacenar las rutas de los archivos que contienen los datos a linealizar
         self.archivos = fd.askopenfilenames(
-        initialdir=".",
-        filetypes=(('Ficheros de texto','*.txt'),),
-        title="Elección de archivos de datos a linealizar")
+        initialdir=".",     #Abre la ventana en el directorio más cercano
+        filetypes=(('Ficheros de texto','*.txt'),), #Menciona la extensión de los archivos que leerá
+        title="Elección de archivos de datos a linealizar") #Coloca un nombre a la ventana
         
         self.n_a = len(self.archivos) #Almacena el número de elementos que hay en la tupla archivos
         
         self.datos_x = np.zeros((self.n_a,self.n)) #Crea matrices con ceros de tamaño #archivos x #datos
-        self.datos_y = np.zeros((self.n_a,self.n))
+        self.datos_y = np.zeros((self.n_a,self.n)) 
         
         print(self.archivos)
 
@@ -70,6 +70,7 @@ class Minimos:
             data_txtDF = pd.DataFrame(data_txt)
             data_txtDF.to_csv(archivo+".csv",index=False)
 
+            
             with open(archivo+".csv",newline="\n") as csvfile:
                 reader = csv.reader(csvfile,delimiter=',') #Lee los datos del archivo csv
 
