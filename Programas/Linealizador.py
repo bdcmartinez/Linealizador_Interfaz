@@ -12,10 +12,14 @@ import pandas as pd
 import math
 import csv
 from math import log10,floor
+from tkinter import filedialog as fd
+from io import open
 
 
 class Minimos:
-    def __init__(self,n,archivos,n_a,nombre_ejex,nombre_ejey):
+    def __init__(self,n,nombre_ejex,nombre_ejey):
+        
+        self.ruta= ""  #Variable que almacena la ruta del archivo
         
         #------------------------------Declaración de variables que dan nombre a los ejes---------------------------------------
 
@@ -46,11 +50,23 @@ class Minimos:
         
         
         
+    def seleccion_archivos(self):
+        self.archivos = fd.askopenfilenames(
+        initialdir=".",
+        filetypes=(('Ficheros de texto','*.txt'),),
+        title="Elección de archivos de datos a linealizar")
         
+        self.n_a = len(self.archivos) #Almacena el número de elementos que hay en la tupla archivos
+        
+        self.datos_x = np.zeros((self.n_a,self.n)) #Crea matrices con ceros de tamaño #archivos x #datos
+        self.datos_y = np.zeros((self.n_a,self.n))
+        
+        print(self.archivos)
+
     def Obtener_datos(self):
         for k,archivo in enumerate(self.archivos):  #k indica el numero del elemento del archivo y archivo almacena el nombre 
                                                     #almacena la cadena de texto del nombre del archivo
-            data_txt = np.loadtxt(archivo+".txt")   #convierte el archivo de txt a csv para así poder usarlo
+            data_txt = np.loadtxt(archivo)   #convierte el archivo de txt a csv para así poder usarlo
             data_txtDF = pd.DataFrame(data_txt)
             data_txtDF.to_csv(archivo+".csv",index=False)
 
@@ -198,15 +214,16 @@ class Minimos:
 #Actualmente está configurada para el caso 2-
 
 
-Nombres=[r"C:\Users\2RJ23LA_RS6\Desktop\Programa mínimos definitivo\Datos_a_linealizar\datos"]    
 nombre_ejex = "Distancia"
 nombre_ejey = "tan theta"
 
 
 
-p = Minimos(12,Nombres,len(Nombres),nombre_ejex,nombre_ejey)  #1-Número de datos del documento, 2-Tupla que contiene lo
+p = Minimos(12,nombre_ejex,nombre_ejey)  #1-Número de datos del documento, 2-Tupla que contiene lo
 #nombres de los archivos los cuales tienen datos a promediar, 3-Obtiene el numero de archivos que hay, 4-Nombre del eje x, 
 # 5- Nombre del eje y
+
+p.seleccion_archivos()
 
 p.Obtener_datos()  #Almacena los datos del archivo txt para luego trabajarlos
 p.Sacar_Promedio() #Obtiene el promedio de los datos, Nota: Si solo se trabaja con un archivo entonces esto no afecta en nada
