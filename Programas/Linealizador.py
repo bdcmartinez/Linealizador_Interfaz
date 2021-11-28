@@ -14,7 +14,6 @@ import csv
 from math import log10,floor
 
 
-
 class Minimos:
     def __init__(self,n,archivos,n_a,nombre_ejex,nombre_ejey):
         
@@ -27,12 +26,7 @@ class Minimos:
         #--------------------------Declaración de variables usadas para almacenamiento de datos--------------------------------
 
         
-        self.archivos=archivos #Almacena en una tupla los nombres de cada archivo el cual cada uno tiene elementos
         self.n = n  #Almacena el número de elementos que tiene el archivos txt (número de datos)
-        self.n_a = n_a #Almacena el número de elementos que hay en la tupla archivos
-        
-        self.datos_x = np.zeros((n_a,n)) #Crea matrices con ceros de tamaño #archivos x #datos
-        self.datos_y = np.zeros((n_a,n))
         self.delta=[]
         
         #--------------------------------Declaración de variables usadas para MC----------------------------------------------
@@ -204,7 +198,7 @@ class Minimos:
 #Actualmente está configurada para el caso 2-
 
 
-Nombres=["datos"]    
+Nombres=[r"C:\Users\2RJ23LA_RS6\Desktop\Programa mínimos definitivo\Datos_a_linealizar\datos"]    
 nombre_ejex = "Distancia"
 nombre_ejey = "tan theta"
 
