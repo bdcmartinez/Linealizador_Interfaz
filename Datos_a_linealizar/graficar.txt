@@ -1,0 +1,16 @@
+
+set size 1,1
+set style line 1 lt 6 pt 7
+set encoding utf8
+
+
+set key
+set title "Gráfica {/Symbol r} vs P"
+set xlabel "pholabola"
+set ylabel "P"
+
+set title font ",17"
+set xlabel font ",17"
+set ylabel font ",17"
+
+plot "datos_examen.txt" using 1:2 ls 1 notitle

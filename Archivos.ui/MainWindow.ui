@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>487</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>80</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calisto MT</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Num de datos</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>140</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calisto MT</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Nombre eje x</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>190</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calisto MT</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Nombre eje y</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>230</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calisto MT</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Título gráfica</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="Num_datos">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>90</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calisto MT</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="Nom_ejex">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>140</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calisto MT</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="Nom_ejey">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>190</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calisto MT</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="Titulo_grafica">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>240</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calisto MT</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Boton_ElegirA">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>320</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calisto MT</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Elegir archivos</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Boton_Linealizar">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>320</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calisto MT</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Linealizar</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="Nom_Archivos">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>440</y>
+      <width>381</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Calisto MT</family>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>Nombre del archivo</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>elemento1</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="OpcLinealizador">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>40</y>
+      <width>331</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Obtención de mínimos cuadrados</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>487</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuasdf">
+    <property name="title">
+     <string>Archivo</string>
+    </property>
+    <addaction name="actionNuevo"/>
+    <addaction name="actionAbrir"/>
+    <addaction name="separator"/>
+    <addaction name="actionEditar"/>
+    <addaction name="actionGuardar_2"/>
+    <addaction name="actionGuardar_como_2"/>
+    <addaction name="separator"/>
+    <addaction name="actionSalir"/>
+   </widget>
+   <widget class="QMenu" name="menuTipo">
+    <property name="title">
+     <string>Configuración</string>
+    </property>
+    <widget class="QMenu" name="menuTipo_de_linealizaci_n">
+     <property name="title">
+      <string>Tipo de linealización</string>
+     </property>
+     <addaction name="actionMinimosCuadrados"/>
+     <addaction name="actionPotencial"/>
+     <addaction name="actionExponencial"/>
+     <addaction name="actionPolinomica"/>
+    </widget>
+    <addaction name="menuTipo_de_linealizaci_n"/>
+    <addaction name="actionEscribir_ecuaci_n"/>
+   </widget>
+   <widget class="QMenu" name="menuAyuda">
+    <property name="title">
+     <string>Ayuda</string>
+    </property>
+    <addaction name="action_Como_usar_la_interfaz"/>
+    <addaction name="actionCreditos"/>
+   </widget>
+   <addaction name="menuasdf"/>
+   <addaction name="menuTipo"/>
+   <addaction name="menuAyuda"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionEditar">
+   <property name="text">
+    <string>Editar</string>
+   </property>
+  </action>
+  <action name="actionGuardar_como">
+   <property name="text">
+    <string>Guardar como</string>
+   </property>
+  </action>
+  <action name="actionGuardar_2">
+   <property name="text">
+    <string>Guardar</string>
+   </property>
+  </action>
+  <action name="actionAbrir">
+   <property name="text">
+    <string>Abrir</string>
+   </property>
+  </action>
+  <action name="actionM_nimos_cuadrados">
+   <property name="text">
+    <string>Mínimos cuadrados</string>
+   </property>
+  </action>
+  <action name="actionLinealizaci_n_logaritmica">
+   <property name="text">
+    <string>Logaritmica</string>
+   </property>
+  </action>
+  <action name="actionSemi_Logaritmica">
+   <property name="text">
+    <string>Semi-Logaritmica</string>
+   </property>
+  </action>
+  <action name="actionMinimosCuadrados">
+   <property name="text">
+    <string>Mínimos cuadrados</string>
+   </property>
+  </action>
+  <action name="actionPotencial">
+   <property name="text">
+    <string>Potencial (Logaritmica)</string>
+   </property>
+  </action>
+  <action name="actionExponencial">
+   <property name="text">
+    <string>Exponencial (SemiLogaritmica)</string>
+   </property>
+  </action>
+  <action name="actionM_todo_de_potencia">
+   <property name="text">
+    <string>Método de potencia</string>
+   </property>
+  </action>
+  <action name="actionPolinomica">
+   <property name="text">
+    <string>Polinomica</string>
+   </property>
+  </action>
+  <action name="actionEscribir_ecuaci_n">
+   <property name="text">
+    <string>Escribir ecuación</string>
+   </property>
+  </action>
+  <action name="actionCreditos">
+   <property name="text">
+    <string>Acerca de graphandline</string>
+   </property>
+  </action>
+  <action name="action_Como_usar_la_interfaz">
+   <property name="text">
+    <string>¿Como usar graphandline?</string>
+   </property>
+  </action>
+  <action name="actionGuardar_como_2">
+   <property name="text">
+    <string>Guardar como</string>
+   </property>
+  </action>
+  <action name="actionNuevo">
+   <property name="text">
+    <string>Nuevo</string>
+   </property>
+  </action>
+  <action name="actionSalir">
+   <property name="text">
+    <string>Salir</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
