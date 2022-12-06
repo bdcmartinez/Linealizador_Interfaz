@@ -8,10 +8,12 @@ import pandas as pd
 import math
 import csv
 from math import log10,floor
-from tkinter import StringVar, filedialog as fd
+from tkinter import Label, StringVar, filedialog as fd
 from io import open
 import tkinter as tk 
 import os
+from matplotlib.figure import Figure  #Libreria para dibujar la gráfica
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk  #Libreria para dibujar la gráfica
 
 
 #Clase la cual meneja el proceso de linealización y mínimos cuadrados
@@ -41,7 +43,7 @@ class Minimos:
         self.nombre_ejey=nombre_ejey
         
 
-        
+        self.ancho = 4
         #--------------------------------Declaración de variables usadas para MC----------------------------------------------
         
         self.x=[] #Almacenará los datos que se toman como valores de x para aplicar mínimos cuadrados
@@ -171,8 +173,59 @@ class Minimos:
         plt.title(self.titulo)
         plt.grid()
         plt.show()
+        
+        
+
+    def grafica(self):    #ESTA FUNCIÓN RECIBE LOS DATOS DIGITADOS POR EL USUARIO PARA DESPUÉS GRAFICARLOS
+            #Utilizamos **kwargs y a que así los elementos que se pasen a la función son indetermados osea que puede haber un numero n de parametros 
+            #Los cuales se van almacenando en un diccionario llamado kwargs
+            
+                    
+                    
+            self.ventana2 = tk.Tk()   #Crea una ventana nueva
+            self.ventana2.title("Datos")   #Le asigna el título de ventana 'Datos' a la nueva ventana
+            self.ventana2.geometry("700x430")  #Ajusta la ventana para que sea de una dimensión de 980x400 pixeles
+            self.ventana2.resizable(1,1)   #Esta opcion impide que el usuario pueda redimensionar la ventana
+            
+            
+            #------------------------CÓDIGO DE LA GRAFICA-----------------------
+            
+            
+            
+            grafica = tk.Frame(self.ventana2) #Crea un nuevo Frame en el cual irá la grafica
+            
+            fig = Figure(figsize=(self.ancho, 4), facecolor='white')   #Crea la base de la grafica
+            axis = fig.add_subplot(111)
+            
+            a = [1,2,3,4,5,6,7,8,9,10]
+            b = [1,2,3,4,5,6,7,8,9,10]
+
+        
+            axis.plot(a,b)  #Imprime los datos en la grafica
+            axis.set_ylabel('Distancia (m)')
+            axis.set_xlabel('Tiempo (s)')
+        
+            axis.grid()   #Crea la cuadricula de fondo que se ve en la grafica
+            
+            canvas = FigureCanvasTkAgg(fig, grafica)
+            canvas.draw()
+            canvas.get_tk_widget().pack()      #codigo para imprimir la grafica y el menú de opciones que hay debajo de ella
+            toolbar = NavigationToolbar2Tk(canvas, grafica)
+            toolbar.update()
+            canvas._tkcanvas.pack()
+            
+            grafica.grid(column=0, row=0)  #Imprime la tabla en la columna 0 y fila 0 de la ventana
+            tk.Button(self.ventana2, text="Largo", command= self.largo).grid(row = 0, column = 1)
+            self.ventana2.rowconfigure(0, weight=1) 
+            self.ventana2.mainloop()    #Hace que se repita y se repita como en un ciclo
+
+        
     #-------------------------------------------------------------------------------
-              
+    
+    def largo(self):
+        self.ancho+= 1
+        print(self.ancho)
+        
     def Imprimir_datos(self):
         print("El valor de la pendiente es:",self.m)
         print("El valor de la intersección es:",self.b)
@@ -210,9 +263,11 @@ class Minimos:
 class Interfaz:
     def __init__(self,ventana):
         self.ventana = ventana 
-        self.ventana.title("Mi editor")
-        self.ventana.geometry("700x400")
+        self.ventana.title("Linealizador")
+        self.ventana.geometry("355x400")
         self.ventana.resizable(0,0)
+        self.ventana.config(bd=50)   #Agrega un borde de 10 espacios
+
 
             
         menubar = tk.Menu(self.ventana)
@@ -229,28 +284,26 @@ class Interfaz:
 
     #Creación de etiqueta inferior
     
-        self.mensaje = tk.StringVar()
-        self.mensaje.set("Programa creado por Brayan")
-        monitor = tk.Label(self.ventana,textvar=self.mensaje,justify="left")
-        monitor.grid(row=0,column=0)
+        
+        v_padx = 5
+        v_pady = 5
+        
+        boton_elegir_archivos = tk.Button(self.ventana,text = "Elegir archivos",command=self.seleccion_archivos,padx = 10,pady = 10,)
+        boton_elegir_archivos.grid(row = 7,column=1)
+        boton_linealizar_datos = tk.Button(self.ventana,text="Linealizar datos",command=self.linealizar,padx = 10 ,pady = 10)
+        boton_linealizar_datos.grid(row=7,column=2)
+        boton_guardar = tk.Button(self.ventana,text = "Guardar sesión", command = self.guardar,padx = 10 ,pady = 10 )
+        boton_guardar.grid(row = 8, column = 1)
 
-        boton1 = tk.Button(self.ventana,text = "Elegir archivos\n a linealizar",command=self.seleccion_archivos)
-        boton1.grid(row = 1,column=1)
-        boton2 = tk.Button(self.ventana,text="Linealizar datos",command=self.linealizar)
-        boton2.grid(row=1,column=2)
-        label1 = tk.Label(self.ventana,text="Los archivos seleccionados son:")
-        label1.grid(row = 1, column = 3)
-        
-        
         self.numero_datos = StringVar()
         self.nombre_ejex = StringVar()
         self.nombre_ejey = StringVar()
         self.nombre_titulo = StringVar()
-        
-        tk.Label(self.ventana, text = "Numero de datos").grid(row = 3, column = 1)
-        tk.Label(self.ventana, text = "Nombre eje x").grid(row = 4, column = 1)
-        tk.Label(self.ventana, text = "Nombre eje y").grid(row = 5, column = 1 )
-        tk.Label(self.ventana, text = "Titulo gráfica").grid(row = 6, column = 1)
+
+        tk.Label(self.ventana, text = "Numero de datos",padx = v_padx,pady = v_pady).grid(row = 3, column = 1)
+        tk.Label(self.ventana, text = "Nombre eje x",padx = v_padx,pady = v_pady).grid(row = 4, column = 1)
+        tk.Label(self.ventana, text = "Nombre eje y",padx = v_padx,pady = v_pady).grid(row = 5, column = 1 )
+        tk.Label(self.ventana, text = "Titulo gráfica",padx = v_padx,pady = v_pady).grid(row = 6, column = 1)
         
         tk.Entry(self.ventana, textvariable = self.numero_datos).grid(row = 3,column = 2)
         tk.Entry(self.ventana, textvariable = self.nombre_ejex).grid(row = 4,column = 2)
@@ -267,7 +320,7 @@ class Interfaz:
             
     def guardar(self):
         self.mensaje.set("Guardar linealización")
-
+    
     def guardar_como(self):
         self.mensaje.set("Guardar como")
         
@@ -283,37 +336,29 @@ class Interfaz:
         for i in  self.archivos_rutas:
              self.archivos_nombres.append(os.path.basename(i))
             
-        contador = 2        
+        contador = 9        
         for i in  self.archivos_nombres:
-            tk.Label(self.ventana,text=i).grid(row=contador,column=3)
+            tk.Label(self.ventana,text=i,pady = 10).grid(row=contador,column=2)
             contador+=1
 
+            
     def linealizar(self):
         
         p = Minimos(int(self.numero_datos.get()),self.archivos_rutas,self.nombre_ejex.get(),self.nombre_ejey.get(),self.nombre_titulo.get())  #1-Número de datos del documento, 2-Tupla que contiene lo
         #nombres de los archivos los cuales tienen datos a promediar, 3-Obtiene el numero de archivos que hay, 4-Nombre del eje x, 
         # 5- Nombre del eje y
 
-
         p.Obtener_datos()  #Almacena los datos del archivo txt para luego trabajarlos
         p.Sacar_Promedio() #Obtiene el promedio de los datos, Nota: Si solo se trabaja con un archivo entonces esto no afecta en nada
-
-        p.Graficador()  
+        #p.Graficador()  
         p.Sacar_Logaritmos()        
-                
-                
-        p.Graficador()  
-
+        #p.Graficador()  
         p.Minimos_cuadrados()
-
-
-
-        p.Graficar_Recta() 
-
-        p.Graficador_Exp()
+        #p.Graficar_Recta() 
+        #p.Graficador_Exp()
         p.Escribir_logaritmos()
-
         p.Imprimir_datos()
+        p.grafica()
         
         
 root = tk.Tk()
