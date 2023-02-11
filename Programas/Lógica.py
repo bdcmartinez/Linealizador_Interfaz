@@ -387,7 +387,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.Label_Correlaccion.setText(str(self.p.cc)) #valor del coeficiente de correlación
               
         self.ui.Label_ecRecta.setText("y={}x+{}".format(self.p.m,self.p.b,))   #Ecuación de la recta
-        self.ui.Label_ecExponencial.setText("y={}x^({})".format(self.p.b,self.p.m,)) #Ecuación de la exponencial
+        self.ui.Label_ecExponencial.setText("y={}x^({})".format(np.e**self.p.b,self.p.m,)) #Ecuación de la exponencial
 
 
     #------------------

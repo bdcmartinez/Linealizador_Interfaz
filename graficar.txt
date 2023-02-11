@@ -13,4 +13,5 @@ set title font ",17"
 set xlabel font ",17"
 set ylabel font ",17"
 
-plot "datos_examen.txt" using 1:2 ls 1 notitle
+plot "Datos.dat" using 1:2 ls 1 notitle with lines
+replot "Datos.dat" using 1:2 ls 1 notitle
